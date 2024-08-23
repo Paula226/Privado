@@ -165,6 +165,6 @@ public class Ejecutor {
             for (int i = 0; i < listaEducativo.size(); i++) {
                 System.out.println(listaEducativo.get(i));    
             }
-
+// Incompleto
         }
 }
