@@ -169,6 +169,262 @@ def main(args: Array[String]): Unit = {
   - La derivada analítica.
   - Las derivadas aproximadas con sus errores.
 - Usamos `getOrElse` para manejar casos donde no se pudo calcular una derivada.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- ¡Claro! Vamos a analizar cada ejercicio detalladamente para explicar **cada parte del código** y **su propósito**. Esto te ayudará a entender para qué sirve cada "cosita" en Scala.
+
+---
+
+## **Ejercicio 1: Uso práctico de `Option`**
+```scala
+val numeros = List(1, 2, 3, 4, 5)
+
+def buscarYCuadrado(numero: Int): Option[Int] =
+  numeros.find(_ == numero).map(x => x * x)
+
+println(buscarYCuadrado(3))  // Some(9)
+println(buscarYCuadrado(10)) // None
+```
+
+### Detalle por línea:
+1. **`val numeros = List(1, 2, 3, 4, 5)`**:
+   - Define una lista inmutable con números enteros del 1 al 5.
+   - Una lista es una colección de elementos, como un array, pero inmutable (no puedes modificarla directamente).
+
+2. **`def buscarYCuadrado(numero: Int): Option[Int]`**:
+   - Declara una función llamada `buscarYCuadrado` que toma un entero (`numero`) como entrada.
+   - Devuelve un `Option[Int]`, que puede ser:
+     - `Some(valor)` si el número se encuentra.
+     - `None` si el número no está en la lista.
+
+3. **`numeros.find(_ == numero)`**:
+   - Busca el primer elemento de la lista que sea igual al `numero`.
+   - **`_`**: Representa cada elemento de la lista. Es una forma compacta de escribir funciones anónimas.
+   - Devuelve `Some(numero)` si lo encuentra, o `None` si no lo hace.
+
+4. **`.map(x => x * x)`**:
+   - Si `find` encuentra un número, `map` aplica una función sobre él.
+   - En este caso, la función toma el número `x` y devuelve su cuadrado (`x * x`).
+   - Si `find` devuelve `None`, `map` no hace nada.
+
+5. **`println(buscarYCuadrado(3))`**:
+   - Llama a la función con el número `3`. Como está en la lista, devuelve `Some(9)`.
+
+6. **`println(buscarYCuadrado(10))`**:
+   - Llama a la función con el número `10`. Como no está en la lista, devuelve `None`.
+
+---
+
+## **Ejercicio 2: Manejo seguro de excepciones con `Try`**
+```scala
+import scala.util.{Try, Success, Failure}
+import scala.io.Source
+
+def contarLineas(ruta: String): Try[Int] = Try {
+  val fuente = Source.fromFile(ruta)
+  try {
+    fuente.getLines().size
+  } finally {
+    fuente.close()
+  }
+}
+
+contarLineas("archivo.txt") match {
+  case Success(lineas) => println(s"Líneas: $lineas")
+  case Failure(e) => println(s"Error: ${e.getMessage}")
+}
+```
+
+### Detalle por línea:
+1. **`import scala.util.{Try, Success, Failure}`**:
+   - Importa herramientas para manejar errores de manera segura:
+     - `Try`: Intenta ejecutar un bloque de código.
+     - `Success`: Indica que la operación fue exitosa.
+     - `Failure`: Captura excepciones si algo falla.
+
+2. **`import scala.io.Source`**:
+   - Importa utilidades para trabajar con archivos (lectura de texto, etc.).
+
+3. **`def contarLineas(ruta: String): Try[Int]`**:
+   - Declara una función que recibe una ruta de archivo (`String`) y devuelve un `Try[Int]`.
+   - El `Int` representa el número de líneas del archivo.
+
+4. **`val fuente = Source.fromFile(ruta)`**:
+   - Abre el archivo especificado en `ruta`. Esto puede fallar si el archivo no existe.
+
+5. **`try { fuente.getLines().size }`**:
+   - `fuente.getLines()`: Obtiene las líneas del archivo como un iterador.
+   - `.size`: Cuenta cuántas líneas hay.
+
+6. **`finally { fuente.close() }`**:
+   - Asegura que el archivo se cierre después de leerlo, incluso si ocurre un error.
+
+7. **`match`**:
+   - **`case Success(lineas)`**: Si la operación es exitosa, imprime el número de líneas.
+   - **`case Failure(e)`**: Si ocurre un error, imprime el mensaje de la excepción (`e.getMessage`).
+
+---
+
+## **Ejercicio 3: Uso de `Either` para validar datos**
+```scala
+def validarNumero(numero: Int): Either[String, Int] =
+  if (numero > 0) Right(numero)
+  else Left("Número no válido: debe ser mayor a 0")
+
+println(validarNumero(5))  // Right(5)
+println(validarNumero(-3)) // Left("Número no válido: debe ser mayor a 0")
+```
+
+### Detalle por línea:
+1. **`def validarNumero(numero: Int): Either[String, Int]`**:
+   - Declara una función que devuelve un `Either`.
+   - Un `Either` tiene dos posibles valores:
+     - `Right(valor)`: Representa un resultado exitoso.
+     - `Left(valor)`: Representa un error o resultado alternativo.
+
+2. **`if (numero > 0)`**:
+   - Verifica si el número es mayor a 0.
+
+3. **`Right(numero)`**:
+   - Devuelve el número como un resultado exitoso.
+
+4. **`Left("Número no válido")`**:
+   - Devuelve un mensaje de error si el número no es válido.
+
+5. **`println(validarNumero(5))`**:
+   - Llama a la función con `5`, que es válido, y devuelve `Right(5)`.
+
+6. **`println(validarNumero(-3))`**:
+   - Llama a la función con `-3`, que no es válido, y devuelve `Left("Número no válido")`.
+
+---
+
+## **Ejercicio 4: Transformaciones con listas**
+```scala
+val estudiantes = List(
+  ("Alvarado", "Pablo", 9.0),
+  ("Arciniegas", "Elizabeth", 7.2),
+  ("Lopez", "Carlos", 8.5)
+)
+
+val nombresAltas = estudiantes.filter(_._3 > 8).map(e => s"${e._1} ${e._2}")
+val promedio = estudiantes.map(_._3).sum / estudiantes.length
+
+println(nombresAltas) // List("Alvarado Pablo", "Lopez Carlos")
+println(f"Promedio: $promedio%.2f") // Promedio: 8.23
+```
+
+### Detalle por línea:
+1. **`val estudiantes = List(...)`**:
+   - Una lista de tuplas que contiene:
+     - Apellido, nombre y calificación del estudiante.
+
+2. **`filter(_._3 > 8)`**:
+   - Filtra los estudiantes con calificaciones mayores a 8.
+   - **`_._3`**: Selecciona el tercer elemento de cada tupla (la calificación).
+
+3. **`map(e => s"${e._1} ${e._2}")`**:
+   - Transforma las tuplas restantes en nombres completos usando interpolación de cadenas (`s`).
+
+4. **`map(_._3).sum / estudiantes.length`**:
+   - Obtiene las calificaciones (`_._3`), suma los valores y calcula el promedio.
+
+5. **`f"Promedio: $promedio%.2f"`**:
+   - Imprime el promedio con dos decimales (`%.2f`).
+
+---
+¡Claro! Vamos a desglosar este código paso a paso para entender exactamente cómo funciona. El propósito principal del código es **convertir temperaturas de Fahrenheit a Celsius**, pero también maneja valores no válidos (temperaturas inferiores al cero absoluto).
+
+---
+
+### **Código**
+```scala
+//1._Convertir Fahrenheit a Celsius
+def convertirCelsius(fahrenheit: Double): Option[Double] = {
+  if (fahrenheit < -459.67) None
+  else Some((fahrenheit - 32) * 5 / 9)
+}
+
+println(convertirCelsius(-500))  // Resultado esperado: None
+println(convertirCelsius(499.58)) // Resultado esperado: Some(259.766...)
+```
+
+---
+
+### **Desglose por partes**
+
+#### **1. Definición de la función**
+```scala
+def convertirCelsius(fahrenheit: Double): Option[Double] = {
+```
+
+- **`def convertirCelsius`**: Define una función llamada `convertirCelsius`.
+- **`fahrenheit: Double`**: Recibe como parámetro un número decimal (`Double`) que representa la temperatura en Fahrenheit.
+- **`Option[Double]`**: La función devuelve un resultado opcional:
+  - `Some(valor)`: Si la temperatura es válida, devuelve el resultado de la conversión.
+  - `None`: Si la temperatura es inválida (menor al límite físico del cero absoluto, -459.67°F).
+
+---
+
+#### **2. Validación del parámetro**
+```scala
+if (fahrenheit < -459.67) None
+```
+
+- **`fahrenheit < -459.67`**:
+  - El cero absoluto es -459.67°F, por lo que cualquier valor menor no tiene sentido físico.
+  - Si la temperatura es menor a este valor, la función devuelve `None`, indicando que el valor es inválido.
+
+---
+
+#### **3. Cálculo de la conversión**
+```scala
+else Some((fahrenheit - 32) * 5 / 9)
+```
+
+- **`fahrenheit - 32`**: Convierte la temperatura Fahrenheit al equivalente "relativo" en Celsius (el punto de congelación del agua en Fahrenheit es 32).
+- **`* 5 / 9`**: Aplica la fórmula para ajustar la escala de Fahrenheit a Celsius.
+- **`Some(...)`**: Si el valor de Fahrenheit es válido, devuelve el resultado envuelto en un `Some` para indicar éxito.
+
+---
+
+#### **4. Uso de la función**
+```scala
+println(convertirCelsius(-500))  // Resultado esperado: None
+println(convertirCelsius(499.58)) // Resultado esperado: Some(259.766...)
+```
+
+1. **`convertirCelsius(-500)`**:
+   - Como `-500 < -459.67`, la función devuelve `None`.
+   - Esto indica que el valor de entrada no es válido.
+
+2. **`convertirCelsius(499.58)`**:
+   - Se evalúa la fórmula:  
+     \[
+     \text{Celsius} = (499.58 - 32) \times \frac{5}{9} \approx 259.766...
+     \]
+   - La función devuelve `Some(259.766...)`, indicando que la conversión fue exitosa.
+
+---
+
+### **¿Por qué usar `Option`?**
+
+El uso de `Option` en esta función tiene varias ventajas:
+1. **Manejo seguro de valores inválidos**:
+   - En lugar de devolver un número inválido o lanzar una excepción, devuelve `None`, lo que permite manejar el error de manera funcional.
+2. **Compatibilidad con transformaciones funcionales**:
+   - Puedes encadenar operaciones como `map`, `flatMap`, etc., para procesar resultados sin tener que verificar explícitamente si son válidos o no.
+
+---
+
+### **¿Cómo usar esta función?**
+Si necesitas trabajar con el resultado, puedes usar un `match` o métodos como `getOrElse`:
+
+```scala
+val resultado = convertirCelsius(499.58)
+println(resultado.getOrElse("Valor inválido")) // Muestra 259.766... o "Valor inválido"
+```
+
+¿Te gustaría ver más ejemplos prácticos o agregar validaciones adicionales? 😊
 
 ### Resumen:
 Este código calcula las derivadas de varias funciones en un punto utilizando tres métodos numéricos: **diferencia adelante**, **diferencia atrás** y **diferencia central**. También calcula el error entre las derivadas aproximadas y las derivadas analíticas, y luego imprime los resultados para cada función.
