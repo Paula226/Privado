@@ -152,9 +152,7 @@ Se detalla el proceso de carga de datos desde un archivo CSV, incluyendo las lib
 | (en blanco)                                                            |                              |
 | **Total general**                                                      | 95                           |
 
-![image](https://github.com/user-attachments/assets/02752247-81b4-4028-9410-8169ba96fbd4)
-![image](https://github.com/user-attachments/assets/f1f51322-3463-46ec-b001-689b06f789e9)
-![image](https://github.com/user-attachments/assets/9c88289a-707f-47f4-9c36-46a4c10d62d1)
+
 
 ## Analisis de Peliculas 
 ```scala
@@ -486,7 +484,7 @@ object DataCleaner extends App {
 }
 ```
 ## Trabajo con Base de Datos
-##Insercion de datos Ratings
+## Insercion de datos Ratings
 ```scala
 import com.opencsv.{CSVParserBuilder, CSVReaderBuilder}
 
