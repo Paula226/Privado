@@ -46,7 +46,78 @@
 
 
 ## Lectura del CSV
-Se detalla el proceso de carga de datos desde un archivo CSV, incluyendo las librerías utilizadas.
+```scala
+import cats.effect.IO
+import kantan.csv._
+import kantan.csv.ops._
+import kantan.csv.generic._
+import java.io.File
+import scala.io.Source
+
+import models.Movie
+
+object ValidacionLectura extends App {
+ val pathToCsv = "src/main/resources/data/pi_movies_small_cleaned.csv"
+
+ println(s"Verificando archivo en: $pathToCsv")
+ val file = new File(pathToCsv)
+
+ if (!file.exists()) {
+   println(s"❌ Error: El archivo CSV no se encuentra en la ruta especificada.")
+   System.exit(1)
+ }
+
+ val csvConfig = rfc.withHeader(true).withCellSeparator(';')
+
+ def loadCSVData(filePath: String): List[Movie] = {
+   try {
+     println("\n📄 Mostrando primeras 5 líneas del archivo CSV para verificar contenido:")
+     Source.fromFile(filePath).getLines().take(5).foreach(println)
+
+     println("\n🔄 Intentando leer el archivo CSV...")
+
+     val dataSource = file.readCsv[List, Movie](csvConfig)
+     println("✅ Archivo leído, procesando datos...")
+
+     val moviesList = dataSource.collect {
+       case Right(movie) =>
+         println(s"✔ Película procesada correctamente: ${movie.title}")
+         Some(movie)
+       case Left(error) =>
+         println(s" Error al procesar película: $error")
+         println(s" Tipo de error: ${error.getClass.getName}")
+         None
+     }.flatten
+
+     println(s"\n📊 Datos procesados. Se encontraron ${moviesList.size} películas")
+     moviesList
+   } catch {
+     case e: Exception =>
+       println(s"⚠ Error al cargar el archivo CSV: ${e.getMessage}")
+       println(s" Stack trace: ${e.getStackTrace.mkString("\n")}")
+       List.empty[Movie]
+   }
+ }
+
+ val movies = loadCSVData(pathToCsv)
+
+ if (movies.nonEmpty) {
+   println(s"\n Total de películas cargadas: ${movies.size}")
+   println("\n🎬 Primeras 3 películas:")
+   movies.take(3).foreach { m =>
+     println(f"""
+                |ID: ${m.id}%6d
+                |Título: ${m.title}%-50s
+                |Fecha: ${m.release_date}%-10s
+                |Rating: ${m.vote_average}%.1f
+                |Géneros: ${m.genres}
+                |""".stripMargin)
+   }
+ } else {
+   println("\n No se cargaron películas.")
+ }
+}
+```
 
 ## Análisis Exploratorio
 ![image](https://github.com/user-attachments/assets/c1c67967-b407-414c-8281-d601153f028e)
