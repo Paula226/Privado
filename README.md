@@ -49,7 +49,112 @@
 Se detalla el proceso de carga de datos desde un archivo CSV, incluyendo las librerías utilizadas.
 
 ## Análisis Exploratorio
-Análisis inicial de los datos, distribución de variables, estadísticos básicos y visualización.
+![image](https://github.com/user-attachments/assets/c1c67967-b407-414c-8281-d601153f028e)
+## Análisis de Datos Textuales
+
+| **Etiquetas de fila**                                                  | **Cuenta de original_title** |
+|------------------------------------------------------------------------|------------------------------|
+| à¤°à¤•à¥à¤¤                                                           | 1                            |
+| Ã€ travers la forÃªt                                                   | 1                            |
+| All Access: Front Row. Backstage. Live!                                | 1                            |
+| Ant-Man                                                                | 1                            |
+| August Evening                                                         | 1                            |
+| Baby Snakes                                                            | 1                            |
+| Bachelor Flat                                                          | 1                            |
+| Boris and Natasha                                                      | 1                            |
+| Cambridge Spies                                                        | 1                            |
+| Camp de Thiaroye                                                       | 1                            |
+| Carcasses                                                              | 1                            |
+| China Gate                                                             | 1                            |
+| Copper Canyon                                                          | 1                            |
+| Ð¨Ð¿Ð¸Ð¾Ð½                                                             | 1                            |
+| Ð‘Ð°Ð±Ð½Ð¸Ðº                                                           | 1                            |
+| Dear Heart                                                             | 1                            |
+| Dumb and Dumber To                                                     | 1                            |
+| é’çº¢                                                                 | 1                            |
+| Eddie: The Sleepwalking Cannibal                                       | 1                            |
+| El tren de la memoria                                                  | 1                            |
+| Elsker dig for evigt                                                   | 1                            |
+| Fate Is the Hunter                                                     | 1                            |
+| Fighting Back                                                          | 1                            |
+| Flight Command                                                         | 1                            |
+| Follow Me: The Yoni Netanyahu Story                                    | 1                            |
+| Gertie the Dinosaur                                                    | 1                            |
+| God is the Bigger Elvis                                                | 1                            |
+| Grandma Lo-Fi                                                          | 1                            |
+| Harold's Going Stiff                                                   | 1                            |
+| Heavenly Creatures                                                     | 1                            |
+| Hillside Cannibals                                                     | 1                            |
+| HistÃ³rias que sÃ³ Existem Quando Lembradas                            | 1                            |
+| Holy Motors                                                            | 1                            |
+| Hotel Reserve                                                          | 1                            |
+| I cacciatori del cobra d'oro                                           | 1                            |
+| Î†Î´Î¹ÎºÎ¿Ï‚ ÎšÏŒÏƒÎ¼Î¿Ï‚                                              | 1                            |
+| Informant                                                              | 1                            |
+| Julian Po                                                              | 1                            |
+| La fille seule                                                         | 1                            |
+| L'AntisÃ©mite                                                          | 1                            |
+| Lekarstwo na miÅ‚oÅ›Ä‡                                                 | 1                            |
+| Lenny Bruce: Swear to Tell the Truth                                   | 1                            |
+| Live Once, Die Twice                                                   | 1                            |
+| Liverpool                                                              | 1                            |
+| Lobos de Arga                                                          | 1                            |
+| Lola Versus                                                            | 1                            |
+| Madea's Witness Protection                                             | 1                            |
+| Min Avatar og mig                                                      | 1                            |
+| Mock Up on Mu                                                          | 1                            |
+| Mulholland Drive                                                       | 1                            |
+| Nazis at the Center of the Earth                                       | 1                            |
+| No Way Home                                                            | 1                            |
+| Nuit #1                                                                | 1                            |
+| Outpost: Black Sun                                                     | 1                            |
+| Quartet                                                                | 1                            |
+| Quints                                                                 | 1                            |
+| Rabbit Test                                                            | 1                            |
+| Radiostars                                                             | 1                            |
+| Rage                                                                   | 1                            |
+| Return Home                                                            | 1                            |
+| Rok ÄÃ¡bla                                                            | 1                            |
+| Sam Peckinpah: Man of Iron                                             | 1                            |
+| Scarlett                                                               | 1                            |
+| Sebastian Maniscalco: What's Wrong with People?                        | 1                            |
+| Second Best                                                            | 1                            |
+| See Here, Private Hargrove                                             | 1                            |
+| Seven                                                                  | 1                            |
+| Something to Sing About                                                | 1                            |
+| Spinning Boris                                                         | 1                            |
+| Stormy Weather                                                         | 1                            |
+| Superman vs. The Elite                                                 | 1                            |
+| Suspiros de EspaÃ±a                                                    | 1                            |
+| Taxi Driver                                                            | 1                            |
+| The Butterfly Room                                                     | 1                            |
+| The Deep Six                                                           | 1                            |
+| The Fourth Dimension                                                   | 1                            |
+| The Giant Mechanical Man                                               | 1                            |
+| The Gnomes' Great Adventure                                            | 1                            |
+| The Great Los Angeles Earthquake                                       | 1                            |
+| The Hunger Games: Catching Fire                                        | 1                            |
+| The Kill Hole                                                          | 1                            |
+| The Magnificent Yankee                                                 | 1                            |
+| The Mountain Road                                                      | 1                            |
+| The Patent Leather Kid                                                 | 1                            |
+| Traces of Red                                                          | 1                            |
+| Trapped in the Closet: Chapters 1-12                                   | 1                            |
+| Une bouteille Ã  la mer                                                | 1                            |
+| Unguarded                                                              | 1                            |
+| Unicorn City                                                           | 1                            |
+| Ushiro kara mae kara                                                   | 1                            |
+| Verfolkt                                                               | 1                            |
+| Vicky Donor                                                            | 1                            |
+| Vivi o, preferibilmente, morti                                         | 1                            |
+| White Cargo                                                            | 1                            |
+| With Byrd at the South Pole                                            | 1                            |
+| (en blanco)                                                            |                              |
+| **Total general**                                                      | 95                           |
+
+![image](https://github.com/user-attachments/assets/02752247-81b4-4028-9410-8169ba96fbd4)
+![image](https://github.com/user-attachments/assets/f1f51322-3463-46ec-b001-689b06f789e9)
+![image](https://github.com/user-attachments/assets/9c88289a-707f-47f4-9c36-46a4c10d62d1)
 
 ## Limpieza
 Proceso de limpieza de datos, tratamiento de valores nulos, duplicados y conversión de tipos de datos.
